@@ -1,4 +1,4 @@
-# HamBlocks Alpha 0.9
+# HamBlocks Alpha 0.91
 # Author: Hamaad Markhiani
 # Email: hamaad.markhiani@gmail.com
 # 
@@ -42,7 +42,7 @@ cheats   = 0
 cheath   = 0
 cheata   = 0
 
-version = 0.9 # Currently how many major updates done so far
+version = 0.91 # Currently how many major updates done so far
 
 screen_width = 800 
 screen_height = 600 
