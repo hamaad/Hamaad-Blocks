@@ -1,3 +1,7 @@
-Hello! This is my first project on Python and I am using it to test Git. Purely for the purpose of Source control. It is a small project where you collect blocks. 
+-Author: Hamaad Markhiani
+-Email: hamaad.markhiani@gmail.com
+-Purpose: Test of Python 2.7 and PyGame(1.7)
+-Time Spent Working: 11hrs
 
-Nothing too serious.
+-Requirements: Python 2.7 and PyGame 1.7 FOR Python 2.7
+-Features: Mouse control, high scores, sounds, textbox, images, King of the Hill themed

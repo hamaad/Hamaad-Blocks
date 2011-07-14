@@ -1,5 +1,6 @@
 # HamBlocks Alpha 0.9
-# Collaborators: Hamaad Markhiani
+# Author: Hamaad Markhiani
+# Email: hamaad.markhiani@gmail.com
 # 
 
 import pygame
@@ -18,6 +19,7 @@ blue     = (0,0,255)
 green    = (0,255,0)
 yellow   = (255,255,0)
 brown    = (139,69,19)
+
 timeLeft = 900 # How much time left / 60
 timeLeftInSeconds = 0.0 # Time left in seconds, will change in main loop
 begTime  = 900 # Time left
@@ -31,6 +33,7 @@ randomColor = 0 # Is randomized later on to determine who you use. (1-6)
 randomColorCombo = '' # Is changed later on based on randomColor
 cheat    = False # To allow input for the cheat code
 musicOff = False # Is the music supposed to be turned off?
+
 # Variables to determine cheat code (rimsha[a])
 cheatr   = 0 
 cheati   = 0
@@ -39,23 +42,20 @@ cheats   = 0
 cheath   = 0
 cheata   = 0
 
-version = 0.9 # Already, baby!
+version = 0.9 # Currently how many major updates done so far
 
-screen_width = 800 # Screen's width in pixels
-screen_height = 600 # Screen's height in pixels
+screen_width = 800 
+screen_height = 600 
 
 # --------------------------[END] VARIABLES--------------------------
 
 # The class for blocks
 class Block(pygame.sprite.Sprite):
     
-    # Constructor. 
     def __init__(self, color, width, height):
-        # Call the constructor
+        
         pygame.sprite.Sprite.__init__(self) 
 
-        # Create an image of the block, and fill it with a color.
-        # This could also be an image loaded from the disk.
         if color == 'hankhill':
             self.image = pygame.image.load('Images\\hankhill.jpg')
             self.image.set_colorkey(black)
@@ -85,35 +85,35 @@ class Block(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
 # Initialize Pygame, and do not show the mouse!
+# ^ This allows for using a "custom" cursor of Hank Hill, or a black box.
 pygame.init()
 pygame.mouse.set_visible(False)
-pygame.display.set_caption('HamBlocks Version: ' + str(version)) # Window Caption
-# Set the height and width of the screen & icons
+pygame.display.set_caption('HamBlocks Version: ' + str(version)) # Caption
 Surface = pygame.image.load("Images\\icon.jpg")
 pygame.display.set_icon(Surface)
 screen=pygame.display.set_mode([screen_width,screen_height])
 
-# This is a list of 'sprites.' 
+# List of Sprites
 block_list = pygame.sprite.RenderPlain()
 
-# This is a list of every sprite. All blocks and the player block as well.
+# Renders all the sprites into a nice little list
 all_sprites_list = pygame.sprite.RenderPlain()
 
 for i in range(100):
-    # This represents a block
+    # This makes a block
     block = Block(black, 30, 30)
 
-    # Set a random location for the block
+    # Set the location for the box...
     block.rect.x = random.randrange(screen_width)
     block.rect.y = random.randrange(40, screen_height)
     
-    # Add the block to the list of objects
+    # Add the block to the magical list
     block_list.add(block)
     all_sprites_list.add(block)
     
     
 
-# Create a red player block
+# Create the Block for the player. (Default = Black)
 player = Block(black, 30, 30)
 all_sprites_list.add(player)
 
@@ -124,20 +124,20 @@ done = False
 def clear(color):
     screen.fill(color)
 
-# A Function to tell them their score!
+# A Function to tell them their score! [Needs some cleaning up]
 def timeIsUp(score):
     clear(white)
     global highScore
     global highScoreName
-    if (score > highScore[4]):
-        if (score > highScore[3]):
-            if (score > highScore[2]):
-                if (score > highScore[1]):
-                    if (score > highScore[0]):
+    if (score > highScore[4]): # If you got 5th, try for 4th. 
+        if (score > highScore[3]): # If you got 1st, try for 4th. 
+            if (score > highScore[2]): # If you got 1st, try for 4th. 
+                if (score > highScore[1]): # If you got 2nd, try for 1st. 
+                    if (score > highScore[0]): # If you got 1st 
                         highScore[0] = score
                         highScoreName[0] = username
                         textHigh = 'You got 1st place in the high scores list! You ARE winning!'
-                    else:
+                    else: 
                         highScore[1] = score
                         highScoreName[1] = username
                         textHigh = 'You got 2nd place in the high scores list!'
@@ -155,12 +155,17 @@ def timeIsUp(score):
             textHigh = 'You got 5th place in the high scores list!'
     else:
         textHigh = 'You did not make it to the high scores list!'
+
+    # Open the "font" file. It really is the highscore number file
     file = open("System_Files\\font.hamaad", 'r+')
     cPickle.dump(highScore, file)
     file.close()
+    # Open the "sound" file. It really is the highscore name file
     file = open("System_Files\\sound.hamaad", 'r+')
     cPickle.dump(highScoreName, file)
     file.close()
+
+    # Display the highscores
     font = pygame.font.Font(None,30)
     text = 'You got a score of ' + str(score) + '!'
     text2 = 'The system will now pause for 5 seconds and then quit!'
@@ -197,21 +202,28 @@ def timeIsUp(score):
 # A Function to show them how to start!
 def begin():
     global begTime
-    clock.tick(100) # Set FPS to really high
+    clock.tick(100) # Set FPS to 100, so we can measure the time left
+    
+    # Collect the current highscore numbers. This is cleverly named "font"
     file = open("System_Files\\font.hamaad", 'r+')
     global highScore
     highScore = cPickle.load(file)
     file.close()
+    
+    # Collect the current highscore names. This is cleverly named "font"
     file = open("System_Files\\sound.hamaad", 'r+')
     global highScoreName
     highScoreName = cPickle.load(file)
     file.close()
+
+    # Begin music playing! This will loop unless you press space during the game.
     begfont = pygame.font.Font(None,30)
     pygame.mixer.music.load("Sound\\boggle.ogg")
     pygame.mixer.music.play(loops=-1, start=0.0)
+    
     while (begTime != 0):
         clear(white)
-        begtext = str(username) + '! 15 seconds!'
+        begtext = str(username) + '! 15 seconds to collect the most boxes!'
         begren = begfont.render(begtext, 1, red)
         begtext2 = 'Waiting for ' + str(begTime/100) + ' more seconds!'
         begren2 = begfont.render(begtext2, 1, black)
@@ -223,8 +235,8 @@ def begin():
         begTime -= 1
         pygame.display.flip()
 
-# InputBox ---------------------------------------------------------------------
-def get_key():
+# Takes input and returns a key. (For the name input)
+def keysteal():
   while 1:
     event = pygame.event.poll()
     if event.type == KEYDOWN:
@@ -248,13 +260,12 @@ def display_box(screen, message):
                 ((screen.get_width() / 2) - 100, (screen.get_height() / 2) - 10))
   pygame.display.flip()
 
-def ask(screen, question):
-  "ask(screen, question) -> answer"
+def name(screen):
   pygame.font.init()
   current_string = []
-  display_box(screen, question + " : " + string.join(current_string,""))
+  display_box(screen, "Username:" + string.join(current_string,""))
   while 1:
-    inkey = get_key()
+    inkey = keysteal()
     if inkey == K_BACKSPACE:
       current_string = current_string[0:-1]
     elif inkey == K_RETURN:
@@ -263,15 +274,14 @@ def ask(screen, question):
       current_string.append("_")
     elif inkey <= 127:
       current_string.append(chr(inkey))
-    display_box(screen, question + ": " + string.join(current_string,""))
+    display_box(screen, "Username:" + string.join(current_string,""))
   return string.join(current_string,"")
-# InputBox ---------------------------------------------------------------------
 
 # Used to manage how fast the screen updates
 clock=pygame.time.Clock()
 
 screen = pygame.display.set_mode((320,240))
-username = ask(screen,"Username")
+username = name(screen)
 pygame.display.set_mode((800,600))
 
 begin()
