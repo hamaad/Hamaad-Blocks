@@ -1,7 +1,8 @@
 # Hamaad Markhiani
-# cPickle highScore testing system
+# cPickle highScore interactive editing system
 # Today's a beautiful day...yay.
 # Go!
+# 
 import pygame
 from pygame.locals import *
 import cPickle
@@ -10,6 +11,10 @@ import time
 
 score = [400, 350, 300, 250, 200]
 Name = ['Rimshaa', 'Hamaad', 'Jason', 'Tommy', 'Christy']
+
+def mainMenu():
+    print 'Hello! Welcome to the Ham-Blocks System_Files editor!'
+    option = raw_input("Would you like to\n1:Edit Names\n2:Edit Numbers\n:")
 
 ##file = open("System_Files\\font.hamaad","r+")
 ##highScore = cPickle.load(file)
@@ -27,6 +32,6 @@ Name = ['Rimshaa', 'Hamaad', 'Jason', 'Tommy', 'Christy']
 ##file.close()
 
 ##file = open("System_Files\\sound.hamaad","r+")
-##highScoreName[0] = 'Rimshaa' # If change is needed
+##highScoreName[0] = 'Rimshaa' # If change is needed, else use variable 'Name'
 ##cPickle.dump(Name, file)
 ##file.close()
