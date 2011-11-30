@@ -330,25 +330,31 @@ while done==False:
 
     # Cheat codes!
     if cheat == False:
-        if pygame.key.get_pressed()[K_r]:
-            cheatr = 1
-            print 'r'
-        elif pygame.key.get_pressed()[K_i]:
-            cheati = 1
-            print 'i'
+        if pygame.key.get_pressed()[K_b]:
+            cheatb = 1
+            print 'b'
+        elif pygame.key.get_pressed()[K_o]:
+            cheato = 1
+            print 'o'
         elif pygame.key.get_pressed()[K_m]:
             cheatm = 1
             print 'm'
-        elif pygame.key.get_pressed()[K_s]:
-            cheats = 1
-            print 's'
         elif pygame.key.get_pressed()[K_h]:
             cheath = 1
             print 'h'
         elif pygame.key.get_pressed()[K_a]:
             cheata = 1
             print 'a'
-        elif (cheatr + cheati + cheatm + cheats + cheath + cheata == 6):
+        elif pygame.key.get_pressed()[K_u]:
+            cheatu = 1
+            print 'u'
+        elif pygame.key.get_pressed()[K_e]:
+            cheate = 1
+            print 'e'
+        elif pygame.key.get_pressed()[K_r]:
+            cheatr = 1
+            print 'r'
+        elif (cheatb + cheato + cheatm + cheath + cheata + cheatu + cheate + cheatr == 8):
             for i in range(200):
                 # This represents a block
                 block = Block('hankhill', 30, 30)

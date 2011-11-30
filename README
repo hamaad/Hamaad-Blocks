@@ -8,24 +8,19 @@
 
 -Move your mouse rapidly to collect the boxes in order to gain points. 
 
--You may beat the high scores.
-
 -Highscores are stored locally in cleverly named .hamaad files
 -font.hamaad uses cPickle to store high score numbers.
 -sound.hamaad uses cPickle to store high score names.
 
 -Cheat code: It will give you 200 more boxes, and a Hank Hill cursor.
--Type 'rimsha' in any order (arhims, for example) to activate the cheat.
+-Type 'rimsha' in any order (arhsmi, for example) to activate the cheat.
 
 -Press enter to pause the music, and to start playing it again.
 
--After entering your name, you will be shown a instructions screen(4 sec.)
+-After entering your name, you will be shown a instructions screen(4 seconds.)
 -You cannot do anything in this screen but wait; you cannot unpause music.
 
 -There is a System_Files Editor file.
--Soon to be interactive; no file editing! :)
 -This will allow you to edit the highscores to your liking.
--You MUST uncomment some parts to edit the file.
 
--I've listed most that is to be listed about this project, so...
--Feel free to contribute; I will be focusing on other projects for now.
+-This project is currently DONE.
